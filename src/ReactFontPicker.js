@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import ReactDOM from 'react-dom';
 
 export default class ReactFontPicker extends Component {
 
@@ -27,9 +26,11 @@ export default class ReactFontPicker extends Component {
 			var styleSheet = document.styleSheets[i];
 	    var cssRules = styleSheet.rules ? styleSheet.rules : styleSheet.cssRules;
 
-	    for (var j = 0; j < cssRules.length; ++j) {
-	        if(cssRules[j].selectorText == ".ReactFontPicker") return "";
-	    }
+			if (typeof cssRule !== "undefined" && cssRule !== null) {
+		    for (var j = 0; j < cssRules.length; ++j) {
+		        if(cssRules[j].selectorText == ".ReactFontPicker") return "";
+	    	}
+			}
 		}
 
 		var styles = document.createElement("style");
@@ -233,8 +234,6 @@ export default class ReactFontPicker extends Component {
 		// Preview fonts flag from props or default to true
 		var previews = (typeof this.props.previews === "undefined" ?
 										true : this.props.previews);
-
-		console.log(value)
 
 		return (
 			<div className="ReactFontPicker" style={{width: 300}}>

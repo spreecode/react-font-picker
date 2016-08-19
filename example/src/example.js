@@ -6,7 +6,11 @@ var App = React.createClass({
 	render () {
 		return (
 			<div>
-				<ReactFontPicker />
+				<ReactFontPicker
+					label="Select Font"
+					previews={true}
+					onChange={(font) => console.log(font)}
+				/>
 			</div>
 		);
 	}
