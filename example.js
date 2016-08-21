@@ -10,11 +10,14 @@ var App = React.createClass({
 
 	onFontChange: function onFontChange(font) {
 		this.setState({ font: font });
-		console.log(this.state);
 	},
 
 	getInitialState: function getInitialState() {
 		return { font: "Arial" };
+	},
+
+	componentDidUpdate: function componentDidUpdate() {
+		console.log(this.state);
 	},
 
 	render: function render() {
