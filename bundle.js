@@ -148,7 +148,7 @@ var FontPicker = (function (_Component) {
 									onMouseDown: function (e) {
 										return _this.onOptionMouseDown(e, i);
 									},
-									onClick: function (e) {
+									onMouseUp: function (e) {
 										return _this.onOptionClick(e, n);
 									} },
 								n
