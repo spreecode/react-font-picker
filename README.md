@@ -1,6 +1,6 @@
 # react-font-picker
 
-This is a ReactJS font picker component with Material Design styling as default. It exports the `<FontPicker>` component that works as standalone with local component state or with Redux.
+This is a ReactJS font picker component with Material Design styling as default styling. It exports the `<FontPicker>` component that works as standalone with local component state or with Redux.
 
 ## Demo & Examples
 
@@ -31,7 +31,7 @@ npm install react-font-picker --save
 Just require the `'react-font-picker'` package which exports the `<FontPicker>` component.
 
 ```
-  var React = require('react');
+var React = require('react');
 var FontPicker = require('react-font-picker');
 
 var App = React.createClass({
@@ -70,64 +70,52 @@ All properties are optional. The component works as standalone even if you don't
 
 ### Styling
 
-You can supply your own stylesheet if the default Material Design-style doesn't work for you.
+You can supply your own stylesheet if the default material design-style doesn't fit for you.
 
 The default one is injected dynamically if the `.ReactFontPicker` rule is not found in the DOM. Here are the component CSS classnames for quick reference:
 
-    /* The component UI wrapper */
-    .ReactFontPicker_Wrapper {...}
-    .ReactFontPicker_Wrapper:hover {...}
+```
+/* Component wrapper */
+.ReactFontPicker
 
-    /* Label when no font is selected */
-    .ReactFontPicker_Label {...}
-    /* Label when a font is selected (floating above the selected option) */
-    .ReactFontPicker_LabelFloat {...}
+/* The component UI wrapper */
+.ReactFontPicker_Wrapper
+.ReactFontPicker_Wrapper:hover
 
-    /* The option that is displayed in the main field */
-    .ReactFontPicker_SelectedOption {...}
+/* Label when no font is selected */
+.ReactFontPicker_Label
 
-    /* Small dropdown arrow */
-    .ReactFontPicker_Button {...}
-    .ReactFontPicker_Button:hover {...}
+/* Label when a font is selected (floating above the selected option) */
+.ReactFontPicker_LabelFloat
 
-    /* Option list (list of fonts) */
-    .ReactFontPicker_Options {...}
-    /* ...when hidden */
-    .ReactFontPicker_OptionsHidden {...}
+/* The option that is displayed in the main field */
+.ReactFontPicker_SelectedOption
 
-    /* Option (font) in the dropdown option list */
-    .ReactFontPicker_Option {...}
-    .ReactFontPicker_Option:hover {...}
+/* Small dropdown arrow */
+.ReactFontPicker_Button
+.ReactFontPicker_Button:hover
 
-    /* MATERIAL DESIGN: */
-    /* Elements that have the Material design click ripple effect */
-    div.ReactFontPicker_Wrapper .ripple {
-      position: relative;
-      overflow: hidden;
-    }
-    /* The Material design ripple effect itself */
-    div.ReactFontPicker_Wrapper .ripple-effect{
-      position: absolute;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      background: white;
-      animation: ripple-animation 1.8s;
-    }
-    /* ...keyframes for ripple animation */
-    @keyframes ripple-animation {
-      from {
-        transform: scale(1);
-        opacity: 0.4;
-      }
-      to {
-        transform: scale(100);
-        opacity: 0;
-      }
-    }
-    .ReactFontPicker {
-      display: block;
-    }
+/* Option list (list of fonts) */
+.ReactFontPicker_Options
+
+/* ...when hidden */
+.ReactFontPicker_OptionsHidden
+
+/* Option (font) in the dropdown option list */
+.ReactFontPicker_Option
+.ReactFontPicker_Option:hover
+
+/* MATERIAL DESIGN: */
+
+/* Elements that have the Material design click ripple effect */
+div.ReactFontPicker_Wrapper .ripple
+
+/* The Material design ripple effect itself */
+div.ReactFontPicker_Wrapper .ripple-effect
+
+/* ...keyframes for ripple animation */
+@keyframes ripple-animation
+```
 
 To override styles in your own stylesheet you should use a more precise selector e.g `div.ReactFontPicker`
 
@@ -139,12 +127,25 @@ To build, watch and serve the examples (which will also watch the component sour
 
 ## License
 
-The MIT license (MIT)
-
+**The MIT license (MIT)**
+```
 Copyright (c) 2016 Andreas Urbanski.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in the
+Software without restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+```
