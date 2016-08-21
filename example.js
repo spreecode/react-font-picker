@@ -8,16 +8,25 @@ var FontPicker = require('react-font-picker');
 var App = React.createClass({
 	displayName: 'App',
 
+	onFontChange: function onFontChange(font) {
+		console.log(font);
+		this.setState({ font: font });
+	},
+
+	getInitialState: function getInitialState() {
+		return { font: "Arial" };
+	},
+
 	render: function render() {
+
 		return React.createElement(
 			'div',
 			null,
 			React.createElement(FontPicker, {
 				label: 'Select Font',
+				value: this.state.font,
 				previews: true,
-				onChange: function (font) {
-					return console.log(font);
-				}
+				onChange: this.onFontChange
 			})
 		);
 	}

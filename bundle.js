@@ -9,8 +9,6 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30,20 +28,12 @@ var FontPicker = (function (_Component) {
 		_get(Object.getPrototypeOf(FontPicker.prototype), "constructor", this).call(this, props);
 
 		// Bind component methods to this context
-		this.getBasicFonts = this.getBasicFonts.bind(this);
 		this.onWrapperClick = this.onWrapperClick.bind(this);
 		this.onOptionClick = this.onOptionClick.bind(this);
 
-		// Get available fonts and selected fton from props or defaults
-		var fonts = this.props.fonts || this.getBasicFonts();
-		var selectedFont = this.props.value || "";
-
-		// We have a local component state so the font picker works without
-		// explicitly supplying with inital value and fonts as props
 		this.state = {
 			isOptionsVisible: false,
-			selectedFont: selectedFont,
-			fonts: fonts
+			selectedFont: this.props.value
 		};
 	}
 
@@ -71,16 +61,9 @@ var FontPicker = (function (_Component) {
 			document.getElementsByTagName("head")[0].appendChild(styles);
 		}
 	}, {
-		key: "getBasicFonts",
-		value: function getBasicFonts() {
-			return ["Arial", "Arial Narrow", "Arial Black", "Courier New", "Georgia", "Lucida Console", "Lucida Sans Unicode", "Tahoma", "Times New Roman", "Verdana"];
-		}
-	}, {
 		key: "onWrapperClick",
 		value: function onWrapperClick() {
-			var newState = _extends({}, this.state);
-			newState.isOptionsVisible = !newState.isOptionsVisible;
-			this.setState(newState);
+			this.setState({ isOptionsVisible: !this.state.isOptionsVisible });
 		}
 	}, {
 		key: "onOptionClick",
@@ -89,8 +72,7 @@ var FontPicker = (function (_Component) {
 
 			if (typeof this.props.onChange == "function") this.props.onChange(font);
 
-			var selectedFont = this.props.value || font;
-			this.setState({ isOptionsVisible: false, selectedFont: selectedFont });
+			this.setState({ isOptionsVisible: false, selectedFont: font });
 		}
 	}, {
 		key: "onOptionMouseDown",
@@ -121,23 +103,18 @@ var FontPicker = (function (_Component) {
 		value: function render() {
 			var _this = this;
 
-			var label = this.props.label;
-
-			// Get fonts from props or local state
-			var fonts = this.props.fonts || this.state.fonts;
+			var _props = this.props;
+			var label = _props.label;
+			var fonts = _props.fonts;
+			var previews = _props.previews;
+			var activeColor = _props.activeColor;
 
 			// Get select font (value) from props or local state if props not given
 			var value = this.props.value || this.state.selectedFont;
 
-			// Get font active color from props or default
-			var activeColor = this.props.activeColor || "#64B5F6";
-
-			// Preview fonts flag from props or default to true
-			var previews = typeof this.props.previews === "undefined" ? true : this.props.previews;
-
 			return _react2["default"].createElement(
 				"div",
-				{ className: "ReactFontPicker", style: { width: 300 } },
+				{ className: "ReactFontPicker" },
 				_react2["default"].createElement(
 					"div",
 					{ className: "ReactFontPicker_Wrapper", onClick: this.onWrapperClick },
@@ -159,7 +136,7 @@ var FontPicker = (function (_Component) {
 
 							var style = {};
 
-							if (_this.state.selectedFont == i) style.color = activeColor;
+							if (value == n) style.color = activeColor;
 
 							if (previews) style.fontFamily = n;
 
@@ -195,6 +172,17 @@ FontPicker.propTypes = {
 	activeColor: _react.PropTypes.string,
 	value: _react.PropTypes.string,
 	onChange: _react.PropTypes.func
+};
+
+FontPicker.defaultProps = {
+	label: "",
+	previews: true,
+	fonts: ["Arial", "Arial Narrow", "Arial Black", "Courier New", "Georgia", "Lucida Console", "Lucida Sans Unicode", "Tahoma", "Times New Roman", "Verdana"],
+	activeColor: "#64B5F6",
+	value: "",
+	onChange: function onChange(font) {
+		console.log("FontPicker: " + font);
+	}
 };
 
 exports["default"] = FontPicker;
