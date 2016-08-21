@@ -5,8 +5,8 @@ var FontPicker = require('react-font-picker');
 var App = React.createClass({
 
 	onFontChange: function(font){
-		console.log(font)
 		this.setState({font: font});
+		console.log(this.state)
 	},
 
 	getInitialState: function(){
@@ -17,6 +17,21 @@ var App = React.createClass({
 
 		return (
 			<div>
+
+				<b>With local component state:</b>
+				<br/><br/><br/><br/>
+
+				<FontPicker
+					label="Select Font"
+					value=""
+					previews={true}
+					onChange={(font) => console.log(font)}
+				/>
+
+				<br/><br/><br/>
+				<b>With parent state:</b>
+				<br/><br/><br/><br/>
+
 				<FontPicker
 					label="Select Font"
 					value={this.state.font}
