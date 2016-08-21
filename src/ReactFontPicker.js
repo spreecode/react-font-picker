@@ -84,12 +84,15 @@ export default class FontPicker extends Component {
 				top: -7.5px;
 				width: 100%;
 				height: auto;
+				max-height: 200px;
+				overflow-y: scroll;
 				padding-bottom: 15px;
 				padding-top: 15px;
 				float: left;
 				background-color: #fff;
 
 				box-shadow: 0px 0px 6px #ddd;
+				z-index: 999;
 
 				-webkit-transition: .15s all ease-in-out;
 				-moz-transition: .15s all ease-in-out;
