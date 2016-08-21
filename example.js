@@ -3,7 +3,7 @@ require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof requ
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var ReactFontPicker = require('react-font-picker');
+var FontPicker = require('react-font-picker');
 
 var App = React.createClass({
 	displayName: 'App',
@@ -12,7 +12,7 @@ var App = React.createClass({
 		return React.createElement(
 			'div',
 			null,
-			React.createElement(ReactFontPicker, {
+			React.createElement(FontPicker, {
 				label: 'Select Font',
 				previews: true,
 				onChange: function (font) {
