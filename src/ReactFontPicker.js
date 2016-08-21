@@ -8,6 +8,7 @@ export default class FontPicker extends Component {
 		// Bind component methods to this context
 		this.onWrapperClick = this.onWrapperClick.bind(this);
 		this.onOptionClick = this.onOptionClick.bind(this);
+		this.onRipple = this.onRipple.bind(this);
 
 		this.state = {
 			isOptionsVisible: false,
@@ -172,15 +173,18 @@ export default class FontPicker extends Component {
 	onOptionClick(e, font) {
 		e.stopPropagation();
 
+		if (this.state.isOptionsVisible == false)
+			return;
+
 		if (typeof this.props.onChange == "function")
 			this.props.onChange(font);
 
 		this.setState({isOptionsVisible: false, selectedFont: font});
 	}
 
-	onOptionMouseDown(e, key) {
+	onRipple(e) {
 		// Material UI ripple effect
-		e.preventDefault();
+		// e.preventDefault();
 		e.stopPropagation();
 
 		let target = e.target;
@@ -241,8 +245,10 @@ export default class FontPicker extends Component {
 								<div className="ReactFontPicker_Option ripple"
 										 style={style}
 										 key={i}
-										 onMouseDown={(e) => this.onOptionMouseDown(e, i)}
-										 onMouseUp={(e) => this.onOptionClick(e, n)}>
+										 onMouseDown={(e) => this.onRipple(e)}
+										 onMouseUp={(e) => this.onOptionClick(e, n)}
+										 onClick={(e) => this.onOptionClick(e, n)}
+										 >
 									{n}
 								</div>
 							);

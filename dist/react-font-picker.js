@@ -31,6 +31,7 @@ var FontPicker = (function (_Component) {
 		// Bind component methods to this context
 		this.onWrapperClick = this.onWrapperClick.bind(this);
 		this.onOptionClick = this.onOptionClick.bind(this);
+		this.onRipple = this.onRipple.bind(this);
 
 		this.state = {
 			isOptionsVisible: false,
@@ -71,15 +72,17 @@ var FontPicker = (function (_Component) {
 		value: function onOptionClick(e, font) {
 			e.stopPropagation();
 
+			if (this.state.isOptionsVisible == false) return;
+
 			if (typeof this.props.onChange == "function") this.props.onChange(font);
 
 			this.setState({ isOptionsVisible: false, selectedFont: font });
 		}
 	}, {
-		key: "onOptionMouseDown",
-		value: function onOptionMouseDown(e, key) {
+		key: "onRipple",
+		value: function onRipple(e) {
 			// Material UI ripple effect
-			e.preventDefault();
+			// e.preventDefault();
 			e.stopPropagation();
 
 			var target = e.target;
@@ -147,11 +150,15 @@ var FontPicker = (function (_Component) {
 									style: style,
 									key: i,
 									onMouseDown: function (e) {
-										return _this.onOptionMouseDown(e, i);
+										return _this.onRipple(e);
 									},
 									onMouseUp: function (e) {
 										return _this.onOptionClick(e, n);
-									} },
+									},
+									onClick: function (e) {
+										return _this.onOptionClick(e, n);
+									}
+								},
 								n
 							);
 						})
