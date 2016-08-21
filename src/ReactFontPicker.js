@@ -242,7 +242,7 @@ export default class FontPicker extends Component {
 										 style={style}
 										 key={i}
 										 onMouseDown={(e) => this.onOptionMouseDown(e, i)}
-										 onClick={(e) => this.onOptionClick(e, n)}>
+										 onMouseUp={(e) => this.onOptionClick(e, n)}>
 									{n}
 								</div>
 							);
