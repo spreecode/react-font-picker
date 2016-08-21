@@ -9,8 +9,8 @@ var App = React.createClass({
 	displayName: 'App',
 
 	onFontChange: function onFontChange(font) {
-		console.log(font);
 		this.setState({ font: font });
+		console.log(this.state);
 	},
 
 	getInitialState: function getInitialState() {
@@ -22,6 +22,35 @@ var App = React.createClass({
 		return React.createElement(
 			'div',
 			null,
+			React.createElement(
+				'b',
+				null,
+				'With local component state:'
+			),
+			React.createElement('br', null),
+			React.createElement('br', null),
+			React.createElement('br', null),
+			React.createElement('br', null),
+			React.createElement(FontPicker, {
+				label: 'Select Font',
+				value: '',
+				previews: true,
+				onChange: function (font) {
+					return console.log(font);
+				}
+			}),
+			React.createElement('br', null),
+			React.createElement('br', null),
+			React.createElement('br', null),
+			React.createElement(
+				'b',
+				null,
+				'With parent state:'
+			),
+			React.createElement('br', null),
+			React.createElement('br', null),
+			React.createElement('br', null),
+			React.createElement('br', null),
 			React.createElement(FontPicker, {
 				label: 'Select Font',
 				value: this.state.font,
