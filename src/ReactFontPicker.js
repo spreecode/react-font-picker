@@ -1,16 +1,21 @@
 import React, { PropTypes, Component } from 'react';
 
-export default class ReactFontPicker extends Component {
+export default class FontPicker extends Component {
 
 	constructor(props) {
     super(props);
+
+		// Bind component methods to this context
 		this.getBasicFonts = this.getBasicFonts.bind(this);
 		this.onWrapperClick = this.onWrapperClick.bind(this);
 		this.onOptionClick = this.onOptionClick.bind(this);
 
+		// Get available fonts and selected fton from props or defaults
 		var fonts = this.props.fonts || this.getBasicFonts();
 		var selectedFont = this.props.value || "";
 
+		// We have a local component state so the font picker works without
+		// explicitly supplying with inital value and fonts as props
 		this.state = {
 			isOptionsVisible: false,
 			selectedFont: selectedFont,
@@ -28,11 +33,12 @@ export default class ReactFontPicker extends Component {
 
 			if (typeof cssRule !== "undefined" && cssRule !== null) {
 		    for (var j = 0; j < cssRules.length; ++j) {
-		        if(cssRules[j].selectorText == ".ReactFontPicker") return "";
+		        if(cssRules[j].selectorText == ".ReactFontPicker") return;
 	    	}
 			}
 		}
 
+		// Create stylesheet on the fly
 		var styles = document.createElement("style");
 
 		styles.innerHTML = `
@@ -281,7 +287,7 @@ export default class ReactFontPicker extends Component {
 	}
 }
 
-ReactFontPicker.propTypes = {
+FontPicker.propTypes = {
 	fonts: PropTypes.array,
 	label: PropTypes.string,
 	previews: PropTypes.bool,
@@ -290,4 +296,4 @@ ReactFontPicker.propTypes = {
 	onChange: PropTypes.func,
 }
 
-export default ReactFontPicker;
+export default FontPicker;
