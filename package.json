@@ -1,6 +1,6 @@
 {
   "name": "react-font-picker",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "react-font-picker",
   "main": "lib/ReactFontPicker.js",
   "author": "Andreas Urbanski",

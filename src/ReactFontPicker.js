@@ -6,20 +6,12 @@ export default class FontPicker extends Component {
     super(props);
 
 		// Bind component methods to this context
-		this.getBasicFonts = this.getBasicFonts.bind(this);
 		this.onWrapperClick = this.onWrapperClick.bind(this);
 		this.onOptionClick = this.onOptionClick.bind(this);
 
-		// Get available fonts and selected fton from props or defaults
-		var fonts = this.props.fonts || this.getBasicFonts();
-		var selectedFont = this.props.value || "";
-
-		// We have a local component state so the font picker works without
-		// explicitly supplying with inital value and fonts as props
 		this.state = {
 			isOptionsVisible: false,
-			selectedFont: selectedFont,
-			fonts: fonts
+			selectedFont: this.props.value
 		}
   }
 
@@ -170,25 +162,8 @@ export default class FontPicker extends Component {
 		document.getElementsByTagName("head")[0].appendChild(styles);
 	}
 
-	getBasicFonts() {
-		return [
-			"Arial",
-			"Arial Narrow",
-			"Arial Black",
-			"Courier New",
-			"Georgia",
-			"Lucida Console",
-			"Lucida Sans Unicode",
-			"Tahoma",
-			"Times New Roman",
-			"Verdana"
-		]
-	}
-
 	onWrapperClick() {
-		var newState = Object.assign({}, this.state);
-		newState.isOptionsVisible = !newState.isOptionsVisible;
-		this.setState(newState);
+		this.setState({isOptionsVisible: !this.state.isOptionsVisible});
 	}
 
 	onOptionClick(e, font) {
@@ -197,8 +172,7 @@ export default class FontPicker extends Component {
 		if (typeof this.props.onChange == "function")
 			this.props.onChange(font);
 
-		var selectedFont = this.props.value || font;
-		this.setState({isOptionsVisible: false, selectedFont: selectedFont});
+		this.setState({isOptionsVisible: false, selectedFont: font});
 	}
 
 	onOptionMouseDown(e, key) {
@@ -226,23 +200,13 @@ export default class FontPicker extends Component {
 
 	render() {
 
-		const { label } = this.props;
-
-		// Get fonts from props or local state
-		var fonts = this.props.fonts || this.state.fonts;
+		const { label, fonts, previews, activeColor } = this.props;
 
 		// Get select font (value) from props or local state if props not given
 		var value = this.props.value || this.state.selectedFont;
 
-		// Get font active color from props or default
-		var activeColor = this.props.activeColor || "#64B5F6";
-
-		// Preview fonts flag from props or default to true
-		var previews = (typeof this.props.previews === "undefined" ?
-										true : this.props.previews);
-
 		return (
-			<div className="ReactFontPicker" style={{width: 300}}>
+			<div className="ReactFontPicker">
 
 				{/* Wrapper */}
 				<div className="ReactFontPicker_Wrapper" onClick={this.onWrapperClick}>
@@ -264,7 +228,7 @@ export default class FontPicker extends Component {
 
 							var style = {};
 
-							if (this.state.selectedFont == i)
+							if (value == n)
 								style.color = activeColor;
 
 							if (previews)
@@ -294,6 +258,28 @@ FontPicker.propTypes = {
 	activeColor: PropTypes.string,
 	value: PropTypes.string,
 	onChange: PropTypes.func,
+}
+
+FontPicker.defaultProps = {
+	label: "",
+	previews: true,
+	fonts: [
+		"Arial",
+		"Arial Narrow",
+		"Arial Black",
+		"Courier New",
+		"Georgia",
+		"Lucida Console",
+		"Lucida Sans Unicode",
+		"Tahoma",
+		"Times New Roman",
+		"Verdana"
+	],
+	activeColor: "#64B5F6",
+	value: "",
+	onChange: function(font) {
+		console.log("FontPicker: " + font);
+	}
 }
 
 export default FontPicker;
