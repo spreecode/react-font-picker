@@ -123,7 +123,7 @@ var FontPicker = (function (_Component) {
 					{ className: "ReactFontPicker_Wrapper", onClick: this.onWrapperClick },
 					_react2["default"].createElement(
 						"div",
-						{ className: this.state.selectedFont === "" ? "ReactFontPicker_Label" : "ReactFontPicker_LabelFloat" },
+						{ className: value === "" ? "ReactFontPicker_Label" : "ReactFontPicker_LabelFloat" },
 						label
 					),
 					_react2["default"].createElement(

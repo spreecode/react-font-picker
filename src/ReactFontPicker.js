@@ -210,7 +210,7 @@ export default class FontPicker extends Component {
 		const { label, fonts, previews, activeColor } = this.props;
 
 		// Get select font (value) from props or local state if props not given
-		var value = this.props.value || this.state.selectedFont;
+		const value = this.props.value || this.state.selectedFont;
 
 		return (
 			<div className="ReactFontPicker">
@@ -219,7 +219,7 @@ export default class FontPicker extends Component {
 				<div className="ReactFontPicker_Wrapper" onClick={this.onWrapperClick}>
 
 					{/* Floating label text */}
-					<div className={this.state.selectedFont === "" ? "ReactFontPicker_Label" : "ReactFontPicker_LabelFloat"}>{label}</div>
+					<div className={value === "" ? "ReactFontPicker_Label" : "ReactFontPicker_LabelFloat"}>{label}</div>
 
 					{/* Selected option */}
 					<div className="ReactFontPicker_SelectedOption">
